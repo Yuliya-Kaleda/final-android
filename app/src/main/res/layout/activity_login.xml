@@ -21,6 +21,9 @@
       android:layout_width="80dp"
       android:layout_height="80dp"
       android:layout_marginTop="100dp"
+      android:layout_centerHorizontal="true"
+      android:background="@drawable/c4q"
+      android:scaleType="centerCrop"
       />
 
   <EditText

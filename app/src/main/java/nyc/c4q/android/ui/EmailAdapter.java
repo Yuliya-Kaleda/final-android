@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.squareup.picasso.Picasso;
 import java.util.List;
 import nyc.c4q.android.R;
@@ -39,22 +41,30 @@ public class EmailAdapter extends BaseAdapter {
   @Override public View getView(int position, View view, ViewGroup parent) {
     if (view == null) {
       // TODO - load R.layout.list_email_row
+      view = inflater.inflate(R.layout.list_email_row, parent, false);
     }
 
     // TODO - setup views
+    ImageView image = (ImageView) view.findViewById(R.id.email_from_img);
+    TextView subject = (TextView) view.findViewById(R.id.email_subject);
+    TextView body = (TextView) view.findViewById(R.id.email_body);
 
     // TODO - get the email defined at 'position'
+    Email email = emails.get(position);
 
     // TODO - replace nulls
     Picasso.with(context)
-        .load((String)null)
+        .load(email.getFromUrl())
         .placeholder(R.mipmap.ic_launcher)
         .resizeDimen(R.dimen.list_image_size, R.dimen.list_image_size)
         .centerCrop()
-        .into((ImageView)null);
+        .into(image);
 
     // TODO - set up other views
     // for body, only use MAX_BODY_LENGTH chars followed by "..."
+    // it is set in xml.
+    subject.setText(email.getSubject());
+    body.setText(email.getBody());
 
     return view;
   }

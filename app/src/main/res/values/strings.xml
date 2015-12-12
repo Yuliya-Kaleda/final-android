@@ -11,4 +11,5 @@
   <string name="notification_email_from">From: %1$s</string>
   <string name="button_login">Login</string>
   <string name="alert_dialog_title">Invalid Credentials</string>
+  <string name="try_again">try again</string>
 </resources>

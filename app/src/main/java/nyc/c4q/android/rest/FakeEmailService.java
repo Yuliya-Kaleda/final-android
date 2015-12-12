@@ -13,6 +13,7 @@ import nyc.c4q.android.model.Email;
 public class FakeEmailService implements EmailService {
   private static final DateFormat formatter = SimpleDateFormat.getDateInstance(DateFormat.SHORT);
   private static final Random random = new Random();
+  private static int count = 0;
 
   public static final String JUKAY_PIC =
       "http://static1.squarespace.com/static/528cfee3e4b0c3afb632d2fc/t/559efac2e4b0beaa65d04b0b/1436569758797/Jukay?format=500w";
@@ -58,13 +59,21 @@ public class FakeEmailService implements EmailService {
   public boolean hasNewMail() {
     // TODO - 30% of the time you should generate a new email
     // hint: this class has a member variable that generates random numbers
+    for (int i = 0; i < count; i++) {
+      if (count == 3) {
+        count = 0;
+        emails.add(generateNewRandomEmail());
+        return true;
+      }
+      count++;
+    }
     return false;
   }
 
   @NonNull private Email generateNewRandomEmail() {
     // TODO - return a new email
     // hint: use RANDOM_PIC above
-    return null;
+    return new Email("Random", RANDOM_PIC, "Subject", "Body", makeDate("12/20/1999"));
   }
 
   // utility method
